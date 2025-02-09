@@ -27,3 +27,42 @@ blockchain = [
 # Anthony's KelloggCoin balance is 2650
 
 # 👇👇👇 Your code HERE 👇👇👇
+
+#for user in blockchain
+#  name = user[from_user]
+#  amount = user[amount]
+#  puts "#{name}'s KelloggCoin balance is #{amount}"
+#end
+#puts [blockchain]
+wallet = [
+  { "name" => "ben", "balance" => 0 },
+  { "name" => "brian", "balance" => 0 },
+  { "name" => "evan", "balance" => 0 },
+  { "name" => "anthony", "balance" => 0 }
+]
+
+for line in blockchain
+  if line["from_user"] == nil 
+    for person in wallet
+      if line["to_user"] == person["name"]
+        person["balance"] = person["balance"] + line["amount"]
+        #puts "#{person["name"]} now has #{person["balance"]}" 
+      end
+    end  
+  else
+    for person in wallet
+      if line["to_user"] == person["name"]
+        person["balance"] = person["balance"] + line["amount"]
+        #puts "#{person["name"]} now has #{person["balance"]}" 
+      end
+      if line["from_user"] == person["name"]
+        person["balance"] = person["balance"] - line["amount"]
+        #puts "#{person["name"]} now has #{person["balance"]}" 
+      end
+    end
+  end
+end
+
+for person in wallet
+  puts "#{(person["name"]).capitalize}'s KelloggCoin balance is #{person["balance"]}"
+end
